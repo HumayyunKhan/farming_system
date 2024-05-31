@@ -1,0 +1,20 @@
+.community-container {
+    background-color: var(--card-color);
+    margin: 40px auto 0px auto;
+}
+
+.community-title {
+    font-size: 2rem;
+    font-weight: bold;
+    padding-top: 2rem;
+    padding-bottom: 1rem;
+    text-align: center;
+    text-transform: capitalize;
+}
+
+@media (max-width:550px) {
+    .community-container {
+        background-color: var(--card-color);
+        margin: 6px auto 0px auto;
+    }
+}

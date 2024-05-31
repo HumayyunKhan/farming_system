@@ -1,0 +1,106 @@
+
+.main{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    flex-direction: row;
+    height: 28rem;
+}
+
+.main .main-data{
+    margin: 0.5rem 1.2rem;
+}
+
+.main-title{
+    padding: 0 30px 2px 0;
+    font-size: 2rem;
+    font-weight: 500;
+}
+.main-subtitle{
+    font-size: 1.2rem;
+    font-weight: 400;
+}
+
+.input-field{
+    height: 45px;
+    width: 350px;
+    padding: 16px;
+    margin-top: 2.5rem;
+    outline: none;
+    border-radius: 0.5rem;
+    border: none;
+    font-size: 1.1rem;
+}
+
+.input-field:focus{
+    background-color: var(--card-color);
+    outline-width: 2px;
+    outline-style:double;
+    outline-color: var(--primary-color);
+    outline-offset: 0px;
+    color: var(--white-color);
+}
+
+.serach-icon{
+    margin-left: -30px;
+    color: gray;
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+.search-btn{
+    margin: 1.6rem 3rem;
+    width: 130px;
+    height: 44px;
+    font-size: 1.1rem;
+    font-weight:bold;
+    color: var(--white-color);
+    background-color: var(--primary-color);
+    border: none;
+    border-radius: 0.5rem;
+}
+
+.search-btn:hover{
+    color: var(--white-color);
+    background-color: var(--button-hover-color);
+    border: none;
+}
+
+.div-rabbit-img{
+    overflow: hidden;
+    position: relative;
+    height: 17rem;
+    width: 17rem;
+    border-radius: 50%;
+}
+
+.div-rabbit-img .main-rabbit-img{
+    height: 100%;
+    width: 100%;
+    border-radius: 50%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    cursor: pointer;
+    object-fit: cover;
+    transition: transform 0.3s ease-in-out;
+}
+
+.div-rabbit-img:hover .main-rabbit-img{
+    transform: scale(1.2);
+  }
+
+@media(max-width:800px){
+    .main{
+        display: flex;
+        flex-direction: column;
+        height: 50rem;
+    }
+    .search-btn{
+        width: 90vw;
+        margin: 1rem 0;
+    }
+    .input-field{
+        width: 90vw;
+    }
+}
