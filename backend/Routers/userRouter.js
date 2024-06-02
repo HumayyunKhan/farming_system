@@ -16,11 +16,11 @@ router.route("/register").post(Register);
 
 //Category Routes
 router.route("/postcategory").post(Auth,VendorAuth, categoryUploadMiddleware,postCategory);
-router.route("/getcategory").get(Auth,VendorAuth,getCategories);
+router.route("/getcategory").get(VendorAuth,getCategories);
 router.route("/deletecategory/:categoryId").delete(Auth,VendorAuth,deleteCategory);
 //Product Routes
 router.route("/postproduct").post(Auth,VendorAuth,productUploadMiddleware,postproduct);
-router.route("/getproduct").get(Auth,getproduct);
+router.route("/getproduct").get(getproduct);
 router.route("/deleteproduct/:productId").delete(Auth,VendorAuth,deleteproduct);
  
 //ContactUs Routes
@@ -36,7 +36,7 @@ router.route("/postorder").post(Auth,postorder);
 router.route("/getorder").get(Auth,getorder);
 router.route("/deleteorder/:orderId").delete(Auth,deleteorder); 
 router.route("/getCartItemsSingle/:productid/:userid").get(Auth,getCartItemsSingle);
-router.route("/filterbycategory/:filter").get(Auth,filterbycategory);
+router.route("/filterbycategory/:filter").get(filterbycategory);
 router.route("/addtocart/:productid/").post(Auth,addtocartByUser);
 router.route("/getCartItems").get(Auth,getCartItems); 
 router.route("/removeFromCart/:productid").delete(Auth,removeFromCart);
