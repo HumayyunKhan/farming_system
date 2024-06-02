@@ -37,9 +37,6 @@ router.route("/getorder").get(Auth,getorder);
 router.route("/deleteorder/:orderId").delete(Auth,deleteorder); 
 router.route("/getCartItemsSingle/:productid/:userid").get(Auth,getCartItemsSingle);
 router.route("/filterbycategory/:filter").get(Auth,filterbycategory);
-
-
-
 router.route("/addtocart/:productid/").post(Auth,addtocartByUser);
 router.route("/getCartItems").get(Auth,getCartItems); 
 router.route("/removeFromCart/:productid").delete(Auth,removeFromCart);
