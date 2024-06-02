@@ -33,7 +33,12 @@ const postproduct = AsyncHandler(async (req, res) => {
 
 const getproduct = AsyncHandler(async (req, res) => {
     console.log(req.userId, "------------------")
-    const products = await ProductModel.find({ vendor: req.userId });
+    const {self}=req.query;
+    const query={}
+    if(self){
+        query.vendor=req.userId
+    }
+    const products = await ProductModel.find({ });
     res.status(200).json(products);
 });
 
