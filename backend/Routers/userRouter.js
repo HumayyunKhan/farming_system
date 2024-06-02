@@ -4,7 +4,7 @@ const {checkToken:Auth}=require("../middlewares/authentication")
 const {postCategory,getCategories,deleteCategory} =require('../Controllers/Admin/CategoryController')
 const { postproduct, getproduct, deleteproduct } = require('../Controllers/Admin/ProductController')
 const { postcontactus, getcontactus, deletecontactus } = require('../Controllers/Admin/ContactUsController')
-const {postorder,getorder,deleteorder, addtocart, getCartItems, removeFromCart, getCartItemsSingle, filterbycategory} = require('../Controllers/Admin/OrderController')
+const {postorder,getorder,deleteorder, addtocart, getCartItems, removeFromCart, getCartItemsSingle, filterbycategory, addtocartByUser} = require('../Controllers/Admin/OrderController')
 const { categoryUploadMiddleware, productUploadMiddleware } = require("../middlewares/ImageMiddleware");
 const { VendorAuth } = require("../utils/guards");
 
@@ -30,8 +30,11 @@ router.route("/deletecontactus/:queryId").delete(Auth,deletecontactus);
 
 //Orders Routes
 router.route("/addtocart/:productid/:userid").post(Auth,addtocart);
+router.route("/addtocart/:productid/").post(Auth,addtocartByUser);
 router.route("/getCartItems/:userid").get(Auth,getCartItems); 
+router.route("/getCartItems").get(Auth,getCartItems); 
 router.route("/removeFromCart/:productid/:userid").delete(Auth,removeFromCart);
+router.route("/removeFromCart/:productid").delete(Auth,removeFromCart);
 router.route("/postorder").post(Auth,postorder);
 router.route("/getorder").get(Auth,getorder);
 router.route("/deleteorder/:orderId").delete(Auth,deleteorder); 

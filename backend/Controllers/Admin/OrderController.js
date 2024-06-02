@@ -2,6 +2,7 @@ const AsyncHandler = require("express-async-handler");
 const OrderModel = require('../../Models/AdminModel/OrderModel');
 const UserModel = require("../../Models/userModel");
 const ProductModel = require("../../Models/AdminModel/ProductModel");
+const mongoose = require("mongoose");
 
 const postorder = AsyncHandler(async (req, res) => {
     const { firstname, lastname, email, number, city, country, address, productname, description, quantity, price } = req.body;
@@ -41,6 +42,19 @@ const deleteorder = AsyncHandler(async (req, res) => {
 });
 
 
+const addtocartByUser = AsyncHandler(async (req, res) => {
+    const productid = req.params.productid;
+    const { userId } = req
+    console.log("req", req.params)
+
+    try {
+        const addtocart = await UserModel.findOneAndUpdate({ _id: userId }, { $addToSet: { cartItems: productid } });
+        res.json({ success: true })
+    } catch (error) {
+        console.error(error);
+        res.status(500).json('Internal server error');
+    }
+});
 
 const addtocart = AsyncHandler(async (req, res) => {
     const productid = req.params.productid;
@@ -58,7 +72,10 @@ const addtocart = AsyncHandler(async (req, res) => {
 
 
 const getCartItems = AsyncHandler(async (req, res) => {
-    const userid = req.params.userid;
+    let userid = req.params.userid;
+    if (!userid) {
+        userid = req.userId
+    }
     console.log("req", req.params)
     try {
         const getCartItems = await UserModel.findOne({ _id: userid }).populate("cartItems");
@@ -71,15 +88,23 @@ const getCartItems = AsyncHandler(async (req, res) => {
 
 
 const removeFromCart = AsyncHandler(async (req, res) => {
-    const userid = req.params.userid;
+    let userid = req.params.userid;
+    if (!userid) {
+        userid = req.userId
+    }
     const productId = req.params.productid;
     console.log("asdf", req.params)
     try {
-        await UserModel.findOneAndUpdate(
+        // await UserModel.findOneAndUpdate(
+        //     { _id: userid },
+        //     { $pull: { cartItems: productId } },
+        //     { new: true }
+        // )
+        const updatedUser = await UserModel.findOneAndUpdate(
             { _id: userid },
-            { $pull: { cartItems: productId } },
+            { $pull: { cartItems: new mongoose.Types.ObjectId(productId) } },
             { new: true }
-        )
+        );
         res.json({ success: true, data: getCartItems })
     } catch (error) {
         console.error(error);
@@ -121,4 +146,4 @@ const filterbycategory = AsyncHandler(async (req, res) => {
     }
 });
 
-module.exports = { postorder, getorder, deleteorder, addtocart, getCartItems, removeFromCart, getCartItemsSingle, filterbycategory };
+module.exports = { postorder, getorder, deleteorder, addtocart, getCartItems, removeFromCart, getCartItemsSingle, filterbycategory, addtocartByUser };
