@@ -13,7 +13,7 @@ const TrendingCard = ({ item }) => {
       oldPrice: item.oldPrice,
       description: item.description,
       quantity: item.quantity,
-      img: `http://localhost:1783/Images/${item.productImage}`,
+      img: `${item.productImage}`,
     };
     sessionStorage.setItem("clickedItem", JSON.stringify(itemDetails));
   };
@@ -28,7 +28,7 @@ const TrendingCard = ({ item }) => {
         <div className={CSS["card-img"]}>
           <img
             className={CSS["img"]}
-            src={`http://localhost:1783/Images/${item.productImage}`}
+            src={`${item.productImage}`}
             alt={item.productName}
           />
           <Link

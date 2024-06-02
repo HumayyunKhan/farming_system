@@ -1,13 +1,16 @@
-import React,{useState,useEffect} from 'react'
+import React, { useState, useEffect } from 'react'
 import CSS from './LikeSection.module.css'
 import LikeCard from './LikeCard/LikeCard'
 import axios from 'axios'
 
 const LikeSection = () => {
+
+    const userToken = localStorage.getItem('token');
+
     const [products, setProducts] = useState([]);
     useEffect(() => {
         axios
-            .get("http://localhost:1783/api/getproduct")
+            .get("http://localhost:1783/api/getproduct", { headers: { "Authorization": `Bearer ${userToken}` } })
             .then((res) => {
                 const sortedProducts = res.data.sort((a, b) =>
                     a.productName.localeCompare(b.productName)
@@ -22,7 +25,7 @@ const LikeSection = () => {
             <div className='container'>
                 <h1 className={CSS['like-title']}>You might also like</h1>
                 {products.map((item) => (
-                    <LikeCard key={item._id} item={item}/>
+                    <LikeCard key={item._id} item={item} />
                 ))}
             </div>
         </div>

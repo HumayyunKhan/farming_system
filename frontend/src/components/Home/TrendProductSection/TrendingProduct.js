@@ -4,10 +4,13 @@ import TrendingCard from "./TrendingCard/TrendingCard"
 import axios from "axios";
 
 const TrendingProduct = () => {
+
+  const userToken = localStorage.getItem('token');
+
   const [products, setProducts] = useState([]);
   useEffect(() => {
     axios
-      .get("http://localhost:1783/api/getproduct")
+      .get("http://localhost:1783/api/getproduct", { headers: { "Authorization": `Bearer ${userToken}` } })
       .then((res) => {
         const sortedProducts = res.data.sort((a, b) =>
           a.productName.localeCompare(b.productName)

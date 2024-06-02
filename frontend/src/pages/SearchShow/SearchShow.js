@@ -26,7 +26,7 @@ const SearchShow = () => {
       oldPrice: item.oldPrice,
       description: item.description,
       quantity: item.quantity,
-      img: `http://localhost:1783/Images/${item.productImage}`
+      img: `${item.productImage}`
     };
     sessionStorage.setItem("clickedItem", JSON.stringify(itemDetails));
   };
@@ -41,7 +41,7 @@ const SearchShow = () => {
             <div key={item._id} className={CSS['wrapper-grid']}>
               <div className={CSS['card-container']}>
                 <div className={CSS['card-img']}>
-                  <img className={CSS['img']} src={`http://localhost:1783/Images/${item.productImage}`} alt={item.productName} />
+                  <img className={CSS['img']} src={`${item.productImage}`} alt={item.productName} />
                   <Link to={'/addtocart'} className={`${CSS['button-container']} button-container`}>
                     <button className={CSS['button']} onClick={() => handleCardClick(item)}>Buy</button>
                   </Link>

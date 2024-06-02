@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import emailImage from '../../images/email.png';
 import personImage from '../../images/person.png';
 import passwordImage from '../../images/password.png';
@@ -9,12 +9,15 @@ import axios from "axios";
 import { backedUrl } from "../../apiUrl"
 
 const Login = ({ toggleLoginPopup }) => {
+
+  const navigate = useNavigate();
   const [action, setAction] = useState('Login');
   const [name, setName] = useState('');
   const [emailInput, setEmailInput] = useState('');
   const [password, setPassword] = useState('');
   const [showforgetPopup, setShowLoginPopup] = useState(false);
-  const [Logindis, setLogindis] = useState(false);
+  const [Logindis, setLogindis] = useState(true);
+  const [role, setRole] = useState('Buyer');
 
   const toggleforgetPopup = () => {
     setShowLoginPopup(!showforgetPopup);
@@ -56,7 +59,10 @@ const Login = ({ toggleLoginPopup }) => {
       //   return false;
       // }
       let ourdata = { username: name, email: emailInput, password }
-      let { data } = await axios.post(`${backedUrl}/api/register`, ourdata)
+
+      const apiURL = role === 'Buyer' ? `${backedUrl}/api/register` : `${backedUrl}/api/vendor/register`;
+
+      let { data } = await axios.post(apiURL, ourdata)
       if (data.success) {
         if (data.usernamealreadyExist) {
           alert("Username already exists.")
@@ -70,7 +76,7 @@ const Login = ({ toggleLoginPopup }) => {
         setEmailInput("");
         setPassword("")
         console.log("data", data)
-        localStorage.setItem("buyer", JSON.stringify(data.data))
+        localStorage.setItem('buyer', data.data)
         setAction('')
         alert("Account creeted successfully")
         toggleLoginPopup()
@@ -94,15 +100,27 @@ const Login = ({ toggleLoginPopup }) => {
       //   return false;
       // }
       let ourdata = { username: name, email: emailInput, password }
-      let { data } = await axios.post(`${backedUrl}/api/login`, ourdata)
+
+      const apiURL = role === 'Buyer' ? `${backedUrl}/api/login` : `${backedUrl}/api/vendor/login`;
+
+      let { data } = await axios.post(apiURL, ourdata);
+
       if (data.success) {
         setEmailInput("");
         setPassword("")
         console.log("data", data)
-        localStorage.setItem("buyer", JSON.stringify(data.data))
+        localStorage.setItem('token', data.token)
+        localStorage.setItem("userRole", role)
         setAction('')
-        alert("LoggedIn successfully")
-        toggleLoginPopup()
+        // alert("LoggedIn successfully")
+        if(role === 'Vendor') {
+          navigate('/vendor-dashboard');
+        }
+        if(role === 'Buyer') {
+          navigate('/')
+        }
+
+        // toggleLoginPopup()
       }
       setEmailInput("");
       setPassword("");
@@ -117,11 +135,25 @@ const Login = ({ toggleLoginPopup }) => {
       <div className={CSS['header']}>
         <div className={CSS['text']}>{Logindis ? "Login" : "Sign Up"}</div>
       </div>
+      <div className={CSS['role-container']}>
+        <button
+          className={`${role === 'Buyer' ? CSS['selected'] : CSS['un-selected']}`}
+          onClick={() => setRole('Buyer')}
+        >
+          Buyer
+        </button>
+        <button
+          className={`${role === 'Vendor' ? CSS['selected'] : CSS['un-selected']}`}
+          onClick={() => setRole('Vendor')}
+        >
+          Vendor
+        </button>
+      </div>
       <div className={CSS['allinputs']}>
         {Logindis ? null : (
           <div className={CSS['inputs']}>
             <img width={'20px'} height={'20px'} src={personImage} alt='' />
-            <input  type='text' placeholder='Name' value={name} onChange={(e) => { setName(e.target.value) }} required={true}/>
+            <input type='text' placeholder='Name' value={name} onChange={(e) => { setName(e.target.value) }} required={true} />
           </div>
         )}
         <div className={CSS['inputs']}>
@@ -147,12 +179,12 @@ const Login = ({ toggleLoginPopup }) => {
           Login
         </button> :
           <button type='submit' className={action === 'Login' ? `${CSS['submit']}` : `${CSS['submit']}`} onClick={handleSignUp} >
-            Sign Up 
+            Sign Up
           </button>}
       </div>
       <div style={{ margin: "auto" }}>
-        {Logindis ? <a href='#' onClick={() => setLogindis(false)}>Signup</a>
-          : <a href='#' onClick={() => setLogindis(true)}>Login</a>}
+        {Logindis ? <span style={{ color: '#eee' }}>Don't have an account? <a href='#' style={{ color: 'var(--primary-color)' }} onClick={() => setLogindis(false)}>Signup Now</a></span>
+          : <span style={{ color: '#eee' }}>Already have an acoount. <a href='#' style={{ color: 'var(--primary-color)' }} onClick={() => setLogindis(true)}>Login Now</a></span>}
       </div>
       {showforgetPopup && (
         <div className={CSS.login_popup}>

@@ -10,7 +10,7 @@ const LikeCard = ({item}) => {
   return (
     <div className={CSS['like-card']}>
         <div className={CSS['img-card']}>
-            <img className={CSS['img']} src={`http://localhost:1783/Images/${item.productImage}`}  alt={item.productName}/>
+            <img className={CSS['img']} src={`${item.productImage}`}  alt={item.productName}/>
         </div>
         <div>
             <div className={CSS['like-card-details']}>

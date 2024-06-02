@@ -7,6 +7,9 @@ import axios from 'axios';
 import { backedUrl } from "../../../apiUrl";
 
 const AddtocartCard = () => {
+
+    const userToken = localStorage.getItem('token');
+
     const [quantity, setQuantity] = useState(1);
     const [clickedItem, setClickedItem] = useState({});
     const navigate = useNavigate()
@@ -17,7 +20,7 @@ const AddtocartCard = () => {
     }, []);
 
     const handleBuyClick = () => {
-        let ifUser = localStorage.getItem("buyer");
+        let ifUser = localStorage.getItem("token");
         if (!ifUser) {
             alert("Please Login to Perform this action!");
             return
@@ -27,7 +30,7 @@ const AddtocartCard = () => {
             newPrice: clickedItem.newPrice,
             description: clickedItem.description,
             quantity: quantity,
-            productImage: `http://localhost:1783/Images/${clickedItem.img}`,
+            productImage: `${clickedItem.img}`,
         };
         console.log("itemDetails", itemDetails)
         sessionStorage.setItem("buyItem", JSON.stringify(itemDetails));
@@ -35,7 +38,7 @@ const AddtocartCard = () => {
     };
 
     const handleAddtoCart = async () => {
-        let ifUser = localStorage.getItem("buyer");
+        let ifUser = localStorage.getItem("token");
         if (!ifUser) {
             alert("Please Login to Perform this action!");
             return
@@ -53,8 +56,7 @@ const AddtocartCard = () => {
         storedList.push(itemDetails);
         sessionStorage.setItem('listOfObjects', JSON.stringify(storedList));
 
-        ifUser = JSON.parse(ifUser)
-        let { data } = await axios.post(`${backedUrl}/api/addtocart/${clickedItem._id}/${ifUser._id}`)
+        let { data } = await axios.post(`${backedUrl}/api/addtocart/${clickedItem._id}`, {}, { headers: { "Authorization": `Bearer ${userToken}` } })
         if (data.success) {
             window.location.reload()
             toast.success("Added to Cart Sucessfully")

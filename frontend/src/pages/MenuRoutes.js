@@ -11,6 +11,17 @@ import SearchShow from './SearchShow/SearchShow';
 import ForgetPassword from './ForgetPassword/ForgetPassword';
 import Address from './Address/Address';
 
+import DashBoard from './Vendor/DashBoard/DashBoard';
+import AddCategory from './Vendor/Category/AddCategory';
+import EditCategory from './Vendor/Category/EditCategory';
+import AddProduct from './Vendor/Product/AddProduct';
+import EditProduct from './Vendor/Product/EditProduct';
+import Edit from './Vendor/Product/Edit/Edit';
+import Orders from './Vendor/Query/Orders';
+import OrderDetails from './Vendor/Query/OrderDetails';
+import UserQuery from './Vendor/Query/UserQuery';
+
+
 const MenuRoutes = () => {
   return (
     <Router>
@@ -26,6 +37,16 @@ const MenuRoutes = () => {
         <Route path='/search-results' element={<SearchShow />} />
         <Route path='/address' element={<Address />} />
         <Route path='/address2' element={<Address />} />
+
+        <Route path='/vendor-dashboard' element={<DashBoard />} />
+        <Route path='/vendor-addcategory' element={<AddCategory />} />
+        <Route path='/vendor-editcategory' element={<EditCategory />} />
+        <Route path='/vendor-addproduct' element={<AddProduct />} />
+        <Route path='/vendor-editproduct' element={<EditProduct />} />
+        <Route path='/vendor-orders' element={<Orders />} />
+        <Route path='/vendor-ordersdetails' element={<OrderDetails />} />
+        <Route path='/vendor-userquery' element={<UserQuery />} />
+        <Route path='/vendor-edit' element={<Edit />} />
       </Routes>
     </Router>
   );

@@ -24,7 +24,7 @@ const CheckOutCard = ({CartItem,onRemove }) => {
         <div className={CSS['cart-container']}>
             <div className={CSS['cart-detail-container']} >
                 <div className={CSS['cart-img']}>
-                    <img src={`${backedUrl}/images/${CartItem.productImage}`} alt={CartItem.productImage} className={CSS['img']}/>
+                    <img src={`${CartItem.productImage}`} alt={CartItem.productImage} className={CSS['img']}/>
                 </div>
                 <div className={CSS['cart-detail']}>
                    <h3 className={CSS['cart-title']}>{CartItem.productName}</h3>

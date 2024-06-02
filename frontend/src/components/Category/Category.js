@@ -7,6 +7,9 @@ import { backedUrl } from "../../apiUrl";
 import { useLocation } from "react-router-dom";
 
 const Category = () => {
+
+  const userToken = localStorage.getItem('token');
+
   const [filterItems, setFilterItems] = useState([]);
   const [filterState, setFilterState] = useState(true);
   const [categoryFilter, setCategoryFilter] = useState("All");
@@ -17,12 +20,13 @@ const Category = () => {
   const [products, setProducts] = useState([]);
   useEffect(() => {
     axios
-      .get("http://localhost:1783/api/getproduct")
+      .get("http://localhost:1783/api/getproduct", { headers: { "Authorization": `Bearer ${userToken}` } })
       .then((res) => {
         const sortedProducts = res.data.sort((a, b) =>
           a.productName.localeCompare(b.productName)
         );
         setProducts(sortedProducts);
+        setFilterItems(sortedProducts);
       })
       .catch((err) => console.error(err));
     if (category)
@@ -32,7 +36,7 @@ const Category = () => {
   const handleFilterCategory = async (categoryFilter) => {
     setFilterState(false);
     setCategoryFilter(categoryFilter);
-    let { data } = await axios.get(`${backedUrl}/api/filterbycategory/${categoryFilter}`)
+    let { data } = await axios.get(`${backedUrl}/api/filterbycategory/${categoryFilter}`, { headers: { "Authorization": `Bearer ${userToken}` } })
     console.log("data", data.data)
     setProducts(data.data)
     applyFilters(categoryFilter, priceFilter.Min, priceFilter.Max);
@@ -46,21 +50,30 @@ const Category = () => {
 
   const applyFilters = (category, priceMin, priceMax) => {
     let filteredItems = [...products];
-
+  
+    // Apply category filter
     if (category !== "All") {
       filteredItems = filteredItems.filter((item) =>
-        item.productName.toLowerCase().includes(category.toLowerCase())
+        item.category.toLowerCase() === category.toLowerCase()
       );
     }
-
-    if (priceMin !== 0 && priceMax !== 0) {
+  
+    // Apply price filter
+    if (priceMin !== null && priceMin !== undefined && priceMax !== null && priceMax !== undefined) {
       filteredItems = filteredItems.filter(
-        (item) => item.newPrice >= priceMin && item.newPrice <= priceMax
+        (item) =>
+          (priceMin === 0 || item.newPrice >= priceMin) &&
+          (priceMax === 0 || item.newPrice <= priceMax)
       );
+    } else if (priceMin !== null && priceMin !== undefined) {
+      filteredItems = filteredItems.filter((item) => item.newPrice >= priceMin);
+    } else if (priceMax !== null && priceMax !== undefined) {
+      filteredItems = filteredItems.filter((item) => item.newPrice <= priceMax);
     }
-
+    
     setFilterItems(filteredItems);
   };
+  
 
   return (
     <div className={`${CSS["grid-container"]} container`}>
@@ -72,7 +85,7 @@ const Category = () => {
         />
       </div>
       <div className={CSS["product"]}>
-        <CategoryProductCard ItemList={products} />
+        <CategoryProductCard ItemList={filterItems} />
       </div>
     </div>
   );

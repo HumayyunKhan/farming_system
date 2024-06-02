@@ -12,7 +12,7 @@ const OurSpecialCard = ({ item }) => {
             oldPrice: item.oldPrice,
             description: item.description,
             quantity: item.quantity,
-            img: `http://localhost:1783/Images/${item.productImage}`,
+            img: `${item.productImage}`,
         };
         sessionStorage.setItem("clickedItem", JSON.stringify(itemDetails));
     };
@@ -20,7 +20,7 @@ const OurSpecialCard = ({ item }) => {
     return (
         <div className={CSS['special-container']} >
             <div className={CSS['card-img']}>
-                <img className={CSS['img']} src={`http://localhost:1783/Images/${item.productImage}`} alt={item.productName} />
+                <img className={CSS['img']} src={`${item.productImage}`} alt={item.productName} />
                 <div className={`${CSS['button-container']} button-container`}>
                     <p className={CSS['title']}>{item.productName}</p>
                     <p className={CSS['para']}>{item.description}</p>

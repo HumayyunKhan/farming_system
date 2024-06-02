@@ -1,34 +1,35 @@
-.container-fluid{
-    background-color:var(--background-color) ;
+.container-fluid {
+    background-color: var(--background-color);
     color: var(--white-color);
 }
 
-.back-link{
+.back-link {
     text-decoration: none;
     color: var(--white-color);
     padding: 10px;
 }
-.back-link:hover{
+
+.back-link:hover {
     color: var(--primary-color);
 }
 
-.back-icon{
+.back-icon {
     padding: 10px;
 }
 
-.back{
+.back {
     font-size: 1rem;
     font-weight: 400;
 }
 
-.my-cart{
-    margin:0px;
+.my-cart {
+    margin: 0px;
     padding: 10px;
     font-size: 2.5rem;
-    text-align: left;
+    text-align: center;
 }
 
-.containter-checkbox{
+.containter-checkbox {
     display: flex;
     align-items: center;
     justify-content: flex-start;
@@ -38,7 +39,9 @@
     position: relative;
 }
 
- .checkbox1, .checkbox2, .checkbox3 {
+.checkbox1,
+.checkbox2,
+.checkbox3 {
     appearance: none;
     -webkit-appearance: none;
     -moz-appearance: none;
@@ -52,23 +55,25 @@
 .checkbox1:checked,
 .checkbox2:checked,
 .checkbox3:checked {
-    background-color:var(--primary-color);
+    background-color: var(--primary-color);
     color: var(--white-color);
 }
 
-.checkbox-details1{
+.checkbox-details1 {
     font-size: 0.85rem;
     padding: 15px;
     height: 100%;
     line-height: 15px;
 }
-.checkbox-details2{
+
+.checkbox-details2 {
     font-size: 0.85rem;
     padding: 15px;
     height: 100%;
     line-height: 15px;
 }
-.checkbox-details3{
+
+.checkbox-details3 {
     font-size: 0.85rem;
     padding: 15px;
     height: 90%;
@@ -76,12 +81,12 @@
 }
 
 
-.payment-btn{
+.payment-btn {
     margin: 1.6rem 0.3rem 1rem 0.5rem;
     width: 182px;
     height: 45px;
     font-size: 1.1rem;
-    font-weight:500;
+    font-weight: 500;
     color: var(--white-color);
     background-color: var(--primary-color);
     border: none;
@@ -89,18 +94,18 @@
     transition: background-color 0.3s, color 0.3s;
 }
 
-.payment-btn:hover{
+.payment-btn:hover {
     color: var(--white-color);
     background-color: var(--button-hover-color);
     border: none;
 }
 
-.back-shop-btn{
+.back-shop-btn {
     margin: 1.6rem 0rem 1rem 0.3rem;
     width: 125px;
     height: 45px;
     font-size: 1.1rem;
-    font-weight:500;
+    font-weight: 500;
     color: var(--white-color);
     background-color: var(--black-color);
     border: none;
@@ -108,7 +113,7 @@
     transition: background-color 0.3s, color 0.3s;
 }
 
-.back-shop-btn:hover{
+.back-shop-btn:hover {
     color: var(--white-color);
     background-color: rgba(0, 0, 0, 0.514);
     border: none;

@@ -9,6 +9,9 @@ import "react-toastify/dist/ReactToastify.css";
 import { backedUrl } from "../../apiUrl";
 
 const EnterDetailsBuy = () => {
+
+    const userToken = localStorage.getItem('token');
+
     const [firstname, setFirstName] = useState("");
     const [lastname, setLastName] = useState("");
     const [email, setEmail] = useState("");
@@ -51,7 +54,7 @@ const EnterDetailsBuy = () => {
                 description,
                 quantity,
                 price
-            });
+            }, {}, { headers: { "Authorization": `Bearer ${userToken}` } });
             toast.success("Your order has been successfully placed! Our team will communicate with you on WhatsApp. Thank you!");
             resetFormFields();
         } catch (err) {
@@ -61,7 +64,7 @@ const EnterDetailsBuy = () => {
     // async function getSingleProduct() {
     //     const storedListString = sessionStorage.getItem('listOfObjects');
     //     const storedList = storedListString ? JSON.parse(storedListString) : [];
-    //     let { data } = await axios.get(`${backedUrl}/api/getCartItemsSingle/${storedList._id}/${ifUser._id}`);
+    //     let { data } = await axios.get(`${backedUrl}/api/getCartItemsSingle/${storedList._id}`);
     //     alert("HI")
     //     setCartItems(data.data);
 

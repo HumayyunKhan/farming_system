@@ -4,10 +4,13 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 
 const CategorySection = () => {
+  
+  const userToken = localStorage.getItem('token');
+
   const [categories, setCategories] = useState([]);
   useEffect(() => {
     axios
-      .get("http://localhost:1783/api/getcategory")
+      .get("http://localhost:1783/api/getcategory", { headers: { "Authorization": `Bearer ${userToken}` } })
       .then((res) => {
         const sortedCategory = res.data.sort((a, b) =>
           a.categoryName.localeCompare(b.categoryName)
@@ -28,7 +31,7 @@ const CategorySection = () => {
               </h6>
               <img
                 className={CSS["category-img"]}
-                src={`http://localhost:1783/Images/${category.categoryImage}`}
+                src={`${category.categoryImage}`}
                 alt={category.categoryName}
               />
             </div>

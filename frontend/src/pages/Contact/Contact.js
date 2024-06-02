@@ -9,6 +9,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const Contact = () => {
+  const userToken = localStorage.getItem('token');
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [subject, setSubject] = useState('');
@@ -34,7 +35,12 @@ const Contact = () => {
     await axios
       .post("http://localhost:1783/api/postcontactus", {
         name, email, subject, message,
-      })
+      }, {
+        headers: {
+          Authorization: `Bearer ${userToken}`
+        }
+      }
+      )
       .then((res) => {
         toast.success("Query send");
       })
@@ -89,7 +95,7 @@ const Contact = () => {
                       <label className={CSS['contactus-label']} htmlFor="_message">Message<span className={CSS['contactus-star']}>*</span></label>
                       <textarea rows={3} className={CSS['contactus-message']} id="_message" name="_message" onChange={handleMessage} value={message} placeholder={'Message'} required ></textarea>
                     </div>
-                      <button className={CSS['send-btn']} type='submit'>Send Message</button>
+                    <button className={CSS['send-btn']} type='submit'>Send Message</button>
                   </form>
                 </div>
               </div>

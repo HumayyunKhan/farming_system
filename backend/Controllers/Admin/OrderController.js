@@ -76,7 +76,7 @@ const getCartItems = AsyncHandler(async (req, res) => {
     if (!userid) {
         userid = req.userId
     }
-    console.log("req", req.params)
+    console.log("req", userid)
     try {
         const getCartItems = await UserModel.findOne({ _id: userid }).populate("cartItems");
         res.json({ success: true, data: getCartItems })

@@ -10,6 +10,9 @@ import { backedUrl } from "../../apiUrl";
 import { useLocation, useParams } from "react-router-dom";
 
 const EnterDetailsBuy = () => {
+
+  const userToken = localStorage.getItem('token');
+
   const [firstname, setFirstName] = useState("");
   const [lastname, setLastName] = useState("");
   const [email, setEmail] = useState("");
@@ -39,12 +42,12 @@ const EnterDetailsBuy = () => {
 
 
   // async function getSingleProduct() {
-   //   let ifUser = localStorage.getItem("buyer");
+   //   let ifUser = localStorage.getItem("token");
   //   ifUser = JSON.parse(ifUser)
   //   const storedListString = sessionStorage.getItem('buyItem');
   //   const storedList = storedListString ? JSON.parse(storedListString) : [];
   //   console.log("storedList", storedList);
-  //   let { data } = await axios.get(`${backedUrl}/api/getCartItemsSingle/${storedList._id}/${ifUser._id}`);
+  //   let { data } = await axios.get(`${backedUrl}/api/getCartItemsSingle/${storedList._id}`);
   //   setProductName(data.data.productName);
   //   setDescription(data.data.description);
   //   setQuantity(data.data.quantity);
@@ -66,7 +69,7 @@ const EnterDetailsBuy = () => {
         description:location.state.cartObject.description,
         quantity:location.state.cartObject.quantity,
         price
-      });
+      }, { headers: { "Authorization": `Bearer ${userToken}` }});
       toast.success("Your order has been successfully placed! Our team will communicate with you on WhatsApp. Thank you!");
       resetFormFields();
     } catch (err) {

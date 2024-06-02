@@ -1,7 +1,7 @@
 .containera {
     display: flex;
     flex-direction: column;
-    margin: 3%;
+    margin: 7% auto;
 }
 
 .header {
@@ -59,6 +59,40 @@
     font-weight: normal;
 }
 
+.role-container {
+    margin-bottom: 18px;
+    border: 0.5px solid #ddd;
+    border-radius: 12px;
+    display: flex;
+    justify-content: space-between;
+    padding: 8px;
+}
+
+.role-container button {   
+    width: 100%;
+    border: 0;
+    /* margin: 6px; */
+    color: #eee;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-weight: 600;
+}
+
+.selected {
+    background: var(--primary-color);
+}
+
+.selected:hover {
+    background: var(--primary-color);
+}
+
+.un-selected {
+    background: transparent;
+}
+
+.un-selected:hover {
+    background: #b3390057;
+}
 
 .forget-password {
     margin-top: 2%;
@@ -104,6 +138,10 @@
     padding: 1% 2%;
     margin: 12px auto;
     border: none;
+}
+
+.submit:hover {
+    background-color: var(--button-hover-color);
 }
 
 .gray {
@@ -192,7 +230,7 @@
     left: 50%;
     transform: translate(-50%, -50%);
     background-color: #504a4a;
-    padding: 0px;
+    padding: 20px;
     z-index: 1000;
     border-radius: 10px;
 }

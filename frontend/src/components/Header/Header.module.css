@@ -38,7 +38,7 @@
 /* Header Css */
 .header{
   position: relative;
-  padding: 0 2rem;
+  padding: 2rem;
   background-color: var(--background-color);
 }
 
@@ -58,7 +58,7 @@
 }
 
 .RR-logo{
-    width: 26%;
+    width: 130px;
     margin: 0px 5px;
 }
 
@@ -87,9 +87,13 @@
   margin: 0px 2px;
 }
 
+.action_btn i:hover {
+  color: var(--primary-color);
+}
+
 .action_btn:hover{
-  background-color: var(--primary-color);
-  color: var(--white-color);
+  /* background-color: var(--primary-color); */
+  /* color: var(--white-color); */
 }
 
 .action_btn:active{

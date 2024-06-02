@@ -6,6 +6,9 @@ import axios from "axios";
 import { backedUrl } from "../../../apiUrl";
 
 const CheckData = () => {
+
+    const userToken = localStorage.getItem('token');
+
     const [CartObject, setCartItems] = useState([])
     useEffect(() => {
         getCartItems()
@@ -16,9 +19,8 @@ const CheckData = () => {
     const navigate = useNavigate()
     const getCartItems = async () => {
         try {
-            let ifUser = localStorage.getItem("buyer");
-            ifUser = JSON.parse(ifUser)
-            let { data } = await axios.get(`${backedUrl}/api/getCartItems/${ifUser._id}`);
+            let ifUser = localStorage.getItem("token");
+            let { data } = await axios.get(`${backedUrl}/api/getCartItems`, { headers: { "Authorization": `Bearer ${userToken}` } });
             setCartItems(data.data.cartItems);
 
         } catch (error) {
@@ -29,9 +31,8 @@ const CheckData = () => {
     const handleRemoveItem = async (productId) => {
         // const updatedCartItems = CartObject.filter(item => item.productImage !== productImage);
         // setCartItems(updatedCartItems);
-        let ifUser = localStorage.getItem("buyer");
-        ifUser = JSON.parse(ifUser)
-        await axios.delete(`${backedUrl}/api/removeFromCart/${productId}/${ifUser._id}`)
+        let ifUser = localStorage.getItem("token");
+        await axios.delete(`${backedUrl}/api/removeFromCart/${productId}`, { headers: { "Authorization": `Bearer ${userToken}` } })
         window.location.reload()
     }
     return (
@@ -59,9 +60,9 @@ const CheckData = () => {
                     <p className={CSS['checkbox-details3']}>Agree to the Term and Condition?</p>
                 </div>
                 <div>
-                    
-                        <button onClick={() => navigate(`/address2`, { state: { cartObject: CartObject && CartObject[0] } })} className={CSS['payment-btn']}>Proceed to Details</button>
-                   
+
+                    <button onClick={() => navigate(`/address2`, { state: { cartObject: CartObject && CartObject[0] } })} className={CSS['payment-btn']}>Proceed to Details</button>
+
                     <Link to={'/'}>
                         <button className={CSS['back-shop-btn']}>Back to Shop</button>
                     </Link>

@@ -5,8 +5,12 @@ import RR_Logo from '../../images/RR192.png';
 import Login from '../../pages/Login/Login'
 import axios from 'axios';
 import { backedUrl } from '../../apiUrl';
+import { useNavigate } from 'react-router';
 
 const Header = () => {
+    const userToken = localStorage.getItem('token');
+
+    const navigate = useNavigate();
     const [isOpen, setIsOpen] = useState(false);
     const [showLoginPopup, setShowLoginPopup] = useState(false);
     const [length, setLength] = useState(0);
@@ -14,15 +18,14 @@ const Header = () => {
         const storedListString = sessionStorage.getItem('listOfObjects');
         const storedList = storedListString ? JSON.parse(storedListString) : [];
         getCartItems()
-        
+
     }, [])
     const getCartItems = async () => {
         try {
-            let ifUser = localStorage.getItem("buyer");
-            ifUser = JSON.parse(ifUser)
-            let { data } = await axios.get(`${backedUrl}/api/getCartItems/${ifUser._id}`);
+            let ifUser = localStorage.getItem("token");
+            let { data } = await axios.get(`${backedUrl}/api/getCartItems`, { headers: { "Authorization": `Bearer ${userToken}` } });
             console.log("data", data.data.cartItems.length)
-             setLength(data.data.cartItems.length || 0);
+            setLength(data.data.cartItems.length || 0);
 
         } catch (error) {
             console.log("err", error)
@@ -32,17 +35,18 @@ const Header = () => {
         setIsOpen(!isOpen);
     };
 
-    let ifUser = localStorage.getItem("buyer");
+    let ifUser = localStorage.getItem("token");
     if (ifUser !== "undefined") {
-        ifUser = JSON.parse(ifUser);
+        ifUser = ifUser;
     }
 
     const toggleLoginPopup = () => {
-        setShowLoginPopup(!showLoginPopup);
+        // setShowLoginPopup(!showLoginPopup);
+        navigate('/login');
     };
 
     function Logout() {
-        localStorage.removeItem("buyer");
+        localStorage.removeItem("token");
         window.location.reload()
     }
     return (

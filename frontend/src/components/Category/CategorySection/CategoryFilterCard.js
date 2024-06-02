@@ -3,10 +3,13 @@ import CSS from "./CategoryFilterCard.module.css";
 import axios from "axios";
 
 const CategoryFilterCard = (props) => {
+
+  const userToken = localStorage.getItem('token');
+
   const [categories, setCategories] = useState([]);
   useEffect(() => {
     axios
-      .get("http://localhost:1783/api/getcategory")
+      .get("http://localhost:1783/api/getcategory", { headers: { "Authorization": `Bearer ${userToken}` } })
       .then((res) => {
         const sortedCategory = res.data.sort((a, b) =>
           a.categoryName.localeCompare(b.categoryName)
@@ -17,7 +20,7 @@ const CategoryFilterCard = (props) => {
   }, []);
 
   const Category = [
-    
+
     ...categories,
   ];
 
