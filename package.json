@@ -1,6 +1,0 @@
-{
-  "dependencies": {
-    "http-status": "^1.7.4",
-    "ncrypt-js": "^2.1.1"
-  }
-}

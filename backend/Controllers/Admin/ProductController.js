@@ -1,16 +1,26 @@
 const AsyncHandler = require("express-async-handler");
 const ProductModel = require("../../Models/AdminModel/ProductModel");
+const CategoryModel = require("../../Models/AdminModel/CategoryModel");
 
 const postproduct = AsyncHandler(async (req, res) => {
-    const { categoryName,productName,description,newPrice, oldPrice,quantity } = req.body;
+    const { categoryName, productName, description, newPrice, oldPrice, quantity } = req.body;
+    const { userId } = req;
     try {
-        const existingProduct = await ProductModel.findOne({ productName });
+        const existingCategory = await CategoryModel.findOne({ categoryName });
+        if (!existingCategory) {
+          return res.status(400).json("Category not found");
+        }
+        const existingProduct = await ProductModel.findOne({ productName,categoryName, vendor: userId });
         if (existingProduct) {
             return res.status(400).json("Product Already Exists");
         }
         const productImage = req.file.filename;
+
         await ProductModel.create({
-            categoryName,productName,description,newPrice, oldPrice,quantity,productImage
+            categoryName, productName,
+            description, newPrice, oldPrice,
+            quantity, productImage, vendor: userId,
+            category:existingCategory._id
         });
 
         res.status(201).json("Successfully Added Product");
@@ -21,7 +31,8 @@ const postproduct = AsyncHandler(async (req, res) => {
 });
 
 const getproduct = AsyncHandler(async (req, res) => {
-    const products = await ProductModel.find();
+    console.log(req.userId, "------------------")
+    const products = await ProductModel.find({ vendor: req.userId });
     res.status(200).json(products);
 });
 
@@ -36,10 +47,10 @@ const deleteproduct = AsyncHandler(async (req, res) => {
         res.status(200).json('Product deleted successfully');
     } catch (error) {
         console.error(error);
-        res.status(500).json( 'Internal server error');
+        res.status(500).json('Internal server error');
     }
 });
 
-module.exports = { postproduct, getproduct,deleteproduct };
+module.exports = { postproduct, getproduct, deleteproduct };
 
 

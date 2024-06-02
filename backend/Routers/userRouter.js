@@ -20,23 +20,23 @@ router.route("/getcategory").get(Auth,VendorAuth,getCategories);
 router.route("/deletecategory/:categoryId").delete(Auth,VendorAuth,deleteCategory);
 //Product Routes
 router.route("/postproduct").post(Auth,VendorAuth,productUploadMiddleware,postproduct);
-router.route("/getproduct").get(Auth,VendorAuth,getproduct);
+router.route("/getproduct").get(Auth,getproduct);
 router.route("/deleteproduct/:productId").delete(Auth,VendorAuth,deleteproduct);
  
 //ContactUs Routes
-router.route("/postcontactus").post(postcontactus);
-router.route("/getcontactus").get(getcontactus);
-router.route("/deletecontactus/:queryId").delete(deletecontactus);
+router.route("/postcontactus").post(Auth,postcontactus);
+router.route("/getcontactus").get(Auth,getcontactus);
+router.route("/deletecontactus/:queryId").delete(Auth,deletecontactus);
 
 //Orders Routes
-router.route("/addtocart/:productid/:userid").post(addtocart);
-router.route("/getCartItems/:userid").get(getCartItems); 
-router.route("/removeFromCart/:productid/:userid").delete(removeFromCart);
-router.route("/postorder").post(postorder);
-router.route("/getorder").get(getorder);
-router.route("/deleteorder/:orderId").delete(deleteorder); 
-router.route("/getCartItemsSingle/:productid/:userid").get(getCartItemsSingle);
-router.route("/filterbycategory/:filter").get(filterbycategory);
+router.route("/addtocart/:productid/:userid").post(Auth,addtocart);
+router.route("/getCartItems/:userid").get(Auth,getCartItems); 
+router.route("/removeFromCart/:productid/:userid").delete(Auth,removeFromCart);
+router.route("/postorder").post(Auth,postorder);
+router.route("/getorder").get(Auth,getorder);
+router.route("/deleteorder/:orderId").delete(Auth,deleteorder); 
+router.route("/getCartItemsSingle/:productid/:userid").get(Auth,getCartItemsSingle);
+router.route("/filterbycategory/:filter").get(Auth,filterbycategory);
 
 
 

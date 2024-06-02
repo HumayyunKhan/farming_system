@@ -7,12 +7,7 @@ const categorySchema = mongoose.Schema({
   categoryImage: {
     type: String,
     required: true,
-  },
-  vendor: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'Vendor',
-    required: true,
-  },
+  }
 });
 
 const CategoryModel = mongoose.model(

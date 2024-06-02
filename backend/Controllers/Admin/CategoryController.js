@@ -1,6 +1,6 @@
 const AsyncHandler = require("express-async-handler");
 const CategoryModel = require("../../Models/AdminModel/CategoryModel");
-const mongoose = require('mongoose');
+const config = require("../../config");
 
 const postCategory = AsyncHandler(async (req, res) => {
   const { categoryName } = req.body;
@@ -9,11 +9,12 @@ const postCategory = AsyncHandler(async (req, res) => {
     if (existingCategory) {
       return res.status(400).json("Category Already Exists");
     }
+    
 
     const categoryImage = req.file.filename;
     await CategoryModel.create({
       categoryName,
-      categoryImage
+      categoryImage:config.baseImageUrl+categoryImage
     });
 
     res.status(201).json("Successfully Added Category Product");

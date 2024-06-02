@@ -5,12 +5,14 @@ const dbURI = 'mongodb+srv://admin:test123@cluster0.krj9fey.mongodb.net/?retryWr
 // const dbURI = "mongodb+srv://admin:adminPassword@farming.kjjo4gd.mongodb.net/RR_Farming";
 // const dbURI = "mongodb://127.0.0.1:27017/farming";
  
- 
   
+   
 mongoose.connect(dbURI,{
   useNewUrlParser: true,
   useUnifiedTopology: true,
   // sslValidate: true,
+  serverSelectionTimeoutMS: 30000,
+  socketTimeoutMS: 45000,
   tlsAllowInvalidCertificates: false, 
   tlsAllowInvalidHostnames: false,
 });

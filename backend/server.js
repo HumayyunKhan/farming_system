@@ -1,7 +1,9 @@
 const express = require("express");
-const db = require("../backend/Database/DatabaseConnection"); // Connection Handling MongoDB
 const userrouter = require("./Routers/userRouter");
 const vendorRouter = require("./Routers/vendorRouter");
+const {db}=require("./Database/DatabaseConnection")
+const path=require("path")
+
 const app = express();
 const cors = require("cors");
 const {
@@ -12,17 +14,19 @@ const PORT = process.env.PORT || 1783;
 
 app.use(
   cors({
-    origin: ["http://localhost:6463",'http://localhost:6464'],
+    origin: '*',
     credentials: true,
   })
 );
 app.use(express.json());
-app.use(express.static("public"))
+// app.use(express.static("public"))
 
 // Define routes
 app.use("/api", userrouter);
 app.use("/api/vendor", vendorRouter);
+app.use('/uploads', express.static(path.join(__dirname, './public/Images')));  
 
+ 
 //Error Handlers
 app.use(notFound);
 app.use(errorHandler);
