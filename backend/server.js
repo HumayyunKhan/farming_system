@@ -1,6 +1,7 @@
 const express = require("express");
 const db = require("../backend/Database/DatabaseConnection"); // Connection Handling MongoDB
 const userrouter = require("./Routers/userRouter");
+const vendorRouter = require("./Routers/vendorRouter");
 const app = express();
 const cors = require("cors");
 const {
@@ -20,6 +21,7 @@ app.use(express.static("public"))
 
 // Define routes
 app.use("/api", userrouter);
+app.use("/api/vendor", vendorRouter);
 
 //Error Handlers
 app.use(notFound);

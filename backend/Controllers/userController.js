@@ -1,6 +1,7 @@
 const User = require("../Models/userModel"); // Imported the User Model
 const asynchandler = require("express-async-handler"); // For Error Handling
 const generateToken = require("../utils/generateToken");
+const { ROLES } = require("../utils/roles");
 
 const Register = asynchandler(async (req, res) => {
   try {
@@ -16,7 +17,7 @@ const Register = asynchandler(async (req, res) => {
       res.status(201).json({
         success: true,
         data: user,
-        token: generateToken(user._id),
+        token: generateToken({ id: user.id, role: ROLES.user, username: user.username }),
       });
     } else {
       res.status(400);
@@ -40,7 +41,7 @@ const Login = asynchandler(async (req, res) => {
     res.json({
       success: true,
       data: user,
-      token: generateToken(user._id),
+      token: generateToken({ id: user.id, role: ROLES.user, username: user.username }),
     });
   } else {
     res.status(400).json({ success: false });
