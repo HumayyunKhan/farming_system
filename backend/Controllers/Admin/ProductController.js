@@ -1,6 +1,7 @@
 const AsyncHandler = require("express-async-handler");
 const ProductModel = require("../../Models/AdminModel/ProductModel");
 const CategoryModel = require("../../Models/AdminModel/CategoryModel");
+const config = require("../../config");
 
 const postproduct = AsyncHandler(async (req, res) => {
     const { categoryName, productName, description, newPrice, oldPrice, quantity } = req.body;
@@ -19,7 +20,7 @@ const postproduct = AsyncHandler(async (req, res) => {
         await ProductModel.create({
             categoryName, productName,
             description, newPrice, oldPrice,
-            quantity, productImage, vendor: userId,
+            quantity, productImage:config.baseImageUrl+productImage, vendor: userId,
             category:existingCategory._id
         });
 
