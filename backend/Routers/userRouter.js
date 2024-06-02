@@ -30,16 +30,20 @@ router.route("/deletecontactus/:queryId").delete(Auth,deletecontactus);
 
 //Orders Routes
 router.route("/addtocart/:productid/:userid").post(Auth,addtocart);
-router.route("/addtocart/:productid/").post(Auth,addtocartByUser);
 router.route("/getCartItems/:userid").get(Auth,getCartItems); 
-router.route("/getCartItems").get(Auth,getCartItems); 
 router.route("/removeFromCart/:productid/:userid").delete(Auth,removeFromCart);
-router.route("/removeFromCart/:productid").delete(Auth,removeFromCart);
 router.route("/postorder").post(Auth,postorder);
 router.route("/getorder").get(Auth,getorder);
 router.route("/deleteorder/:orderId").delete(Auth,deleteorder); 
 router.route("/getCartItemsSingle/:productid/:userid").get(Auth,getCartItemsSingle);
 router.route("/filterbycategory/:filter").get(Auth,filterbycategory);
+
+
+
+router.route("/addtocart/:productid/").post(Auth,addtocartByUser);
+router.route("/getCartItems").get(Auth,getCartItems); 
+router.route("/removeFromCart/:productid").delete(Auth,removeFromCart);
+router.route("/getCartItemsSingle/:productid").get(Auth,getCartItemsSingle);
 
 
 

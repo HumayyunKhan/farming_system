@@ -115,9 +115,12 @@ const removeFromCart = AsyncHandler(async (req, res) => {
 
 
 const getCartItemsSingle = AsyncHandler(async (req, res) => {
-    const userid = req.params.userid;
+    let userid = req.params.userid;
     const productId = req.params.productid;
     console.log("getCartItemsSingle", req.params)
+    if (!userid) {
+        userid = req.userId
+    }
     try {
         let data = await UserModel.findOne(
             { _id: userid },
