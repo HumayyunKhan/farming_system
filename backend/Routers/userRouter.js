@@ -16,7 +16,7 @@ router.route("/register").post(Register);
 
 //Category Routes
 router.route("/postcategory").post(Auth,VendorAuth, categoryUploadMiddleware,postCategory);
-router.route("/getcategory").get(VendorAuth,getCategories);
+router.route("/getcategory").get(getCategories);
 router.route("/deletecategory/:categoryId").delete(Auth,VendorAuth,deleteCategory);
 //Product Routes
 router.route("/postproduct").post(Auth,VendorAuth,productUploadMiddleware,postproduct);
