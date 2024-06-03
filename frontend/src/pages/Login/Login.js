@@ -183,8 +183,8 @@ const Login = ({ toggleLoginPopup }) => {
           </button>}
       </div>
       <div style={{ margin: "auto" }}>
-        {Logindis ? <span style={{ color: '#eee' }}>Don't have an account? <a href='#' style={{ color: 'var(--primary-color)' }} onClick={() => setLogindis(false)}>Signup Now</a></span>
-          : <span style={{ color: '#eee' }}>Already have an acoount. <a href='#' style={{ color: 'var(--primary-color)' }} onClick={() => setLogindis(true)}>Login Now</a></span>}
+        {Logindis ? <span style={{ color: 'var(--text-color)' }}>Don't have an account? <a href='#' style={{ color: 'var(--primary-color)' }} onClick={() => setLogindis(false)}>Signup Now</a></span>
+          : <span style={{ color: 'var(--text-color)' }}>Already have an acoount. <a href='#' style={{ color: 'var(--primary-color)' }} onClick={() => setLogindis(true)}>Login Now</a></span>}
       </div>
       {showforgetPopup && (
         <div className={CSS.login_popup}>

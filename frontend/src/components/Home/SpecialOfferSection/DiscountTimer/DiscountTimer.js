@@ -40,7 +40,7 @@ const DiscountTimer = () => {
           <div className={CSS['discount-time']}>{String(seconds).padStart(2, '0')}</div>
         </div>
         <div className={CSS['discount-time-text']}>
-          <p className={CSS['discount-time-unit']}>Hours</p>
+          <p className={CSS['discount-time-unit']} style={{marginLeft: 8}}>Hours</p>
           <p className={CSS['discount-time-unit']}>Minutes</p>
           <p className={CSS['discount-time-unit']}>Seconds</p>
         </div>

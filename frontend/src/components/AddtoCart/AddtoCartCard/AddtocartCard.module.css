@@ -106,7 +106,7 @@
     outline-style: double;
     outline-color: var(--primary-color);
     outline-offset: 0px;
-    color: var(--white-color);
+    color: var(--text-color);
 }
 
 .addtocart-link {
@@ -128,7 +128,7 @@
 }
 
 .addtocart-link-btn:hover {
-    color: var(--white-color);
+    color: var(--text-color);
     background-color: var(--button-hover-color);
     border: none;
 }

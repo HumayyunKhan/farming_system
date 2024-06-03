@@ -4,7 +4,7 @@
 
 .items .navItem, .logo, .action_btn{
   text-decoration: none;
-  color: var(--white-color);
+  color: var(--text-color);
   font-size: 1rem;
   position: relative;
 }
@@ -68,7 +68,7 @@
 }
 
 .navBar .toggle_btn{
-  color: var(--white-color);
+  color: var(--text-color);
   font-size: 1.5rem;
   cursor: pointer;
   display: none;
@@ -76,7 +76,7 @@
 
 .action_btn{
   background-color: transparent;
-  color: var(--white-color);
+  color: var(--text-color);
   padding: 0.5rem 1rem;
   border: none;
   outline: none;
@@ -93,7 +93,7 @@
 
 .action_btn:hover{
   /* background-color: var(--primary-color); */
-  /* color: var(--white-color); */
+  /* color: var(--text-color); */
 }
 
 .action_btn:active{
@@ -162,7 +162,7 @@
   }
   .action_btn:hover{
     background-color: var(--button-hover-color);
-    color: var(--white-color);
+    color: var(--text-color);
   }
 }
 
@@ -203,8 +203,8 @@
 .cart-length{
   position: absolute;
   top: 0%;
-  background-color: var(--white-color);
-  color: black;
+  background-color: var(--primary-color);
+  color: var(--white-color);
   border-radius:50% ;
   width: 20px;
   height: 15px;

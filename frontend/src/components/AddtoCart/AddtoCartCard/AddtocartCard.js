@@ -26,6 +26,7 @@ const AddtocartCard = () => {
             return
         }
         const itemDetails = {
+            _id:clickedItem._id,
             productName: clickedItem.title,
             newPrice: clickedItem.newPrice,
             description: clickedItem.description,
@@ -44,6 +45,7 @@ const AddtocartCard = () => {
             return
         }
         const itemDetails = {
+            _id:clickedItem._id,
             productName: clickedItem.title,
             newPrice: clickedItem.newPrice,
             description: clickedItem.description,
@@ -56,7 +58,7 @@ const AddtocartCard = () => {
         storedList.push(itemDetails);
         sessionStorage.setItem('listOfObjects', JSON.stringify(storedList));
 
-        let { data } = await axios.post(`${backedUrl}/api/addtocart/${clickedItem._id}`, {}, { headers: { "Authorization": `Bearer ${userToken}` } })
+        let { data } = await axios.post(`${backedUrl}/api/addtocart/${clickedItem._id}`, {quantity:quantity}, { headers: { "Authorization": `Bearer ${userToken}` } })
         if (data.success) {
             window.location.reload()
             toast.success("Added to Cart Sucessfully")

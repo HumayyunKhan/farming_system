@@ -9,6 +9,8 @@ import "react-toastify/dist/ReactToastify.css";
 import { backedUrl } from "../../apiUrl";
 import { useLocation, useParams } from "react-router-dom";
 
+import Modal from 'react-modal'
+
 const EnterDetailsBuy = () => {
 
   const userToken = localStorage.getItem('token');
@@ -25,6 +27,8 @@ const EnterDetailsBuy = () => {
   const [description, setDescription] = useState("");
   const [quantity, setQuantity] = useState("");
   const [price, setPrice] = useState(0);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [showInput, setShowInput] = useState(false);
   const [YourItems, setYourItems] = useState([]);
   const location = useLocation()
 
@@ -42,7 +46,7 @@ const EnterDetailsBuy = () => {
 
 
   // async function getSingleProduct() {
-   //   let ifUser = localStorage.getItem("token");
+  //   let ifUser = localStorage.getItem("token");
   //   ifUser = JSON.parse(ifUser)
   //   const storedListString = sessionStorage.getItem('buyItem');
   //   const storedList = storedListString ? JSON.parse(storedListString) : [];
@@ -51,11 +55,22 @@ const EnterDetailsBuy = () => {
   //   setProductName(data.data.productName);
   //   setDescription(data.data.description);
   //   setQuantity(data.data.quantity);
-    // setPrice(150 + parseInt(location.state.cartObject.price));
+  // setPrice(150 + parseInt(location.state.cartObject.price));
   // }
 
   const handleSubmitOrder = async (e) => {
     e.preventDefault();
+    setIsModalOpen(true);
+
+  };
+  const handleRemoveItem = async (productId) => {
+    // const updatedCartItems = CartObject.filter(item => item.productImage !== productImage);
+    // setCartItems(updatedCartItems);
+    let ifUser = localStorage.getItem("token");
+    await axios.delete(`${backedUrl}/api/removeFromCart/${productId}`, { headers: { "Authorization": `Bearer ${userToken}` } })
+    // window.location.reload()
+} 
+  const handlePlaceOrder = async () => {
     try {
       await axios.post("http://localhost:1783/api/postorder", {
         firstname,
@@ -65,18 +80,21 @@ const EnterDetailsBuy = () => {
         city,
         country,
         address,
-        productname:location.state.cartObject.productName,
-        description:location.state.cartObject.description,
-        quantity:location.state.cartObject.quantity,
+        productname: location.state.cartObject.productName,
+        description: location.state.cartObject.description,
+        quantity: location.state.cartObject.quantity,
         price
-      }, { headers: { "Authorization": `Bearer ${userToken}` }});
+      }, { headers: { "Authorization": `Bearer ${userToken}` } });
       toast.success("Your order has been successfully placed! Our team will communicate with you on WhatsApp. Thank you!");
       resetFormFields();
+      setIsModalOpen(false);
+      handleRemoveItem(location.state.cartObject._id)
+
     } catch (err) {
-      console.log("err",err)
+      console.log("err", err)
       toast.error("Please Enter a unique email address.");
     }
-  };
+  }
 
   const resetFormFields = () => {
     setFirstName("");
@@ -105,6 +123,102 @@ const EnterDetailsBuy = () => {
       ) : (
         <div>
           <Header />
+
+          <Modal
+            isOpen={isModalOpen}
+            onRequestClose={() => setIsModalOpen(false)}
+            contentLabel="Select Payment Method"
+            style={{
+              content: {
+                top: '50%',
+                left: '50%',
+                right: 'auto',
+                bottom: 'auto',
+                marginRight: '-50%',
+                transform: 'translate(-50%, -50%)',
+                padding: '20px',
+                borderRadius: 10,
+              },
+            }}
+          >
+            {!showInput && (
+              <>
+                <h4 style={{ textAlign: 'center' }}>Select Payment Method</h4>
+                <button onClick={() => setShowInput(true)} style={{
+                  background: 'var(--primary-color)',
+                  color: 'var(--white-color)',
+                  border: 'none',
+                  padding: '6px 12px',
+                  width: '100%',
+                  borderRadius: 8,
+                  margin: '8px 0',
+                  fontWeight: 600
+                }}>Pay with Easypaisa</button>
+
+                <button onClick={() => setShowInput(true)} style={{
+                  background: 'var(--primary-color)',
+                  color: 'var(--white-color)',
+                  border: 'none',
+                  padding: '6px 12px',
+                  width: '100%',
+                  borderRadius: 8,
+                  margin: '8px 0',
+                  fontWeight: 600
+                }}>Pay with Jazzcash</button>
+
+                <button onClick={() => setIsModalOpen(false)} style={{
+                  background: 'var(--card-color)',
+                  color: 'var(--text-color)',
+                  border: 'none',
+                  padding: '6px 12px',
+                  width: '100%',
+                  borderRadius: 8,
+                  margin: '8px 0',
+                  fontWeight: 600
+                }}>Cancel</button>
+              </>)}
+            {showInput && (
+              <>
+                <div>
+                  <h4 style={{ textAlign: 'center' }}>Enter Number</h4>
+                  <input type="tel"
+                    placeholder="Enter Phone Number"
+                    style={{
+                      background: 'var(--card-color)',
+                      color: 'var(--text-color)',
+                      border: 'none',
+                      padding: '8px 18px',
+                      width: '280px',
+                      borderRadius: 8,
+                      margin: '8px 0'
+                    }}
+                    required />
+                </div>
+                <button onClick={handlePlaceOrder} style={{
+                  background: 'var(--primary-color)',
+                  color: 'var(--white-color)',
+                  border: 'none',
+                  padding: '6px 12px',
+                  width: '100%',
+                  borderRadius: 8,
+                  margin: '8px 0',
+                  fontWeight: 600
+                }}>Place Order</button>
+                <button onClick={() => setIsModalOpen(false)} style={{
+                  background: 'var(--card-color)',
+                  color: 'var(--text-color)',
+                  border: 'none',
+                  padding: '6px 12px',
+                  width: '100%',
+                  borderRadius: 8,
+                  margin: '8px 0',
+                  fontWeight: 600
+                }}>Cancel</button>
+              </>
+
+            )}
+          </Modal>
+
           <div className={`${CSS["container-fluid"]} container-fluid`}>
             <div className="container">
               <h1 className={CSS["contact-title"]}>Address Details</h1>
@@ -158,12 +272,12 @@ const EnterDetailsBuy = () => {
                       ></textarea>
                     </div>
                     <button className={CSS["send-btn"]} type="submit">
-                      Order placed
+                      Place Order
                     </button>
                   </form>
                 </div>
                 <div className={CSS["contactus-img"]}>
-                  {YourItems && <><h1>Name: {YourItems.productName}</h1><p>Description: {YourItems.description}</p><p>Quantity: {YourItems.quantity}</p><p>Delivery charges should be applied and added in total amount. Rs.150</p><h2>Total Price: {price}</h2></>}
+                  {YourItems && <><h1>Name: {YourItems.productName}</h1><p>Description: {YourItems.description}</p><p style={{ background: '#3bb77e1a', padding: '10px 20px', fontWeight: 600, fontSize: 18, borderRadius: 50 }}>Quantity: {YourItems.quantity}</p><p>Delivery charges should be applied and added in total amount. Rs.150</p><h2>Total Price: {YourItems.quantity*YourItems.newPrice}</h2></>}
                 </div>
               </div>
             </div>

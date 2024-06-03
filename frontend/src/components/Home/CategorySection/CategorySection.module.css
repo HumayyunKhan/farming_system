@@ -39,11 +39,11 @@
     width: 100%;
     height: 100%;
     text-decoration: none;
-    color: var(--white-color);
+    color: var(--text-color);
 }
 
 .category-link:hover{
-    color: var(--white-color);
+    color: var(--text-color);
 }
 
 .category-data{

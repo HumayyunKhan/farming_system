@@ -1,6 +1,6 @@
 .container-fluid {
     background-color: var(--background-color);
-    color: var(--white-color);
+    color: var(--text-color);
 }
 
 .aboutus-title {

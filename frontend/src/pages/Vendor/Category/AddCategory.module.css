@@ -1,5 +1,5 @@
 .addcategory-title {
-    color: var(--white-color);
+    color: var(--text-color);
     font-weight: 600;
     font-size: 2.4rem;
     text-align: center;
@@ -26,7 +26,7 @@
 .category-name-div label,
 .category-selectimg-div label {
     text-align: left;
-    color: var(--white-color);
+    color: var(--text-color);
     font-weight: 400;
     padding: 5px 0px 5px 0px;
     font-size: 1rem;
@@ -41,21 +41,21 @@
     font-weight: 500;
     border-radius: 8px;
     outline: none;
-    border: 0px solid var(--primary-color);
-    background-color: var(--white-color);
+    border: 0.4px solid var(--primary-color);
+    background-color: var(--card-color);
 }
 
 .category-name-div input:focus {
     outline: none;
     border: 2px solid var(--primary-color);
-    background-color: var(--white-color);
+    background-color: var(--card-color);
 }
 
 .category-selectimg-div input {
     /* margin: 0px 0px 0px 60px; */
     height: 50px;
     font-size: 1rem;
-    color: var(--white-color);
+    color: var(--text-color);
     font-weight: 500;
     outline: none;
     cursor: pointer;
@@ -93,7 +93,6 @@
 
 .category-button:hover {
     background-color: var(--button-hover-color);
-    color: var(--white-color);
 }
 
 .category-img-div {

@@ -30,6 +30,7 @@
     border-radius: 0.5rem;
     border: none;
     font-size: 1.1rem;
+    background: var(--card-color);
 }
 
 .input-field:focus{
@@ -38,7 +39,7 @@
     outline-style:double;
     outline-color: var(--primary-color);
     outline-offset: 0px;
-    color: var(--white-color);
+    color: var(--text-color);
 }
 
 .serach-icon{
@@ -54,14 +55,14 @@
     height: 44px;
     font-size: 1.1rem;
     font-weight:bold;
-    color: var(--white-color);
+    color: var(--text-color);
     background-color: var(--primary-color);
     border: none;
     border-radius: 0.5rem;
 }
 
 .search-btn:hover{
-    color: var(--white-color);
+    color: var(--text-color);
     background-color: var(--button-hover-color);
     border: none;
 }

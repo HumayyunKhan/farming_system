@@ -11,21 +11,21 @@
 
 .cart-detail-container {
     grid-area: cart-detail-container;
-    border: 1px solid #fff;
+    border: 1px solid var(--text-color);
     border-top-left-radius: 0.5rem;
     border-bottom-left-radius: 0.5rem;
 }
 
 .cart-quantity-container {
     grid-area: cart-quantity-container;
-    border: 1px solid #fff;
+    border: 1px solid var(--text-color);
     border-left: none;
     border-top-right-radius: 0.5rem;
 }
 
 .cart-remove-button-container {
     grid-area: cart-remove-button-container;
-    border: 1px solid #fff;
+    border: 1px solid var(--text-color);
     border-top: none;
     border-left: none;
     border-bottom-right-radius: 0.5rem;
@@ -154,7 +154,7 @@
 .cart-remove-btn {
     background-color: transparent;
     border: none;
-    color: var(--white-color);
+    color: var(--text-color);
     margin-right: 20px;
     font-size: 1.2rem;
     font-weight: 600;

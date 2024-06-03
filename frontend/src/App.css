@@ -16,10 +16,11 @@ body {
 }
 
 :root {
-  --primary-color: #ff5e14;
-  --card-color: #504a4aa4;
+  --primary-color: #3bb77e;
+  --card-color: #e8e8e8b9;
   --white-color: #fff;
+  --text-color: #333;
   --black-color: #000;
-  --button-hover-color: #d94800;
-  --background-color: #151414;
+  --button-hover-color: #1e965e;
+  --background-color: #ffffff;
 }

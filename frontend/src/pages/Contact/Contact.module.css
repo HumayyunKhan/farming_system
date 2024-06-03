@@ -1,6 +1,6 @@
 .container-fluid {
     background-color: var(--background-color);
-    color: var(--white-color);
+    color: var(--text-color);
 }
 
 .contact-title {
@@ -71,7 +71,9 @@
     padding: 15px;
     outline: none;
     border: none;
-    font-size: 1.1rem;
+    font-size: 1rem;
+    border-radius: 8px;
+    background: var(--card-color);
 }
 
 .contactus-name {
@@ -79,8 +81,10 @@
     padding: 15px;
     outline: none;
     border: none;
-    font-size: 1.1rem;
+    font-size: 1rem;
     text-transform: capitalize;
+    border-radius: 8px;
+    background: var(--card-color);
 }
 
 .contactus-subject-container,
@@ -98,17 +102,21 @@
     padding: 15px;
     outline: none;
     border: none;
-    font-size: 1.1rem;
+    font-size: 1rem;
     width: 100%;
     text-transform: capitalize;
+    border-radius: 8px;
+    background: var(--card-color);
 }
 
 .contactus-message {
     padding: 16px;
     outline: none;
     border: none;
-    font-size: 1.1rem;
+    font-size: 1rem;
     width: 100%;
+    border-radius: 8px;
+    background: var(--card-color);
 }
 
 .contactus-message::first-letter{
@@ -134,22 +142,22 @@
     outline-style: double;
     outline-color: var(--primary-color);
     outline-offset: 0px;
-    color: var(--white-color);
+    color: var(--text-color);
 }
 
 .send-btn {
     margin: 1.6rem 0rem;
     width: 100%;
     height: 44px;
-    font-size: 1.1rem;
+    font-size: 1rem;
     font-weight: bold;
     color: var(--white-color);
     background-color: var(--primary-color);
     border: none;
+    border-radius: 8px;
 }
 
 .send-btn:hover {
-    color: var(--white-color);
     background-color: var(--button-hover-color);
     border: none;
 }

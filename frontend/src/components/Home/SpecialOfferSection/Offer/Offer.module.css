@@ -76,14 +76,14 @@
     height: 44px;
     font-size: 1.1rem;
     font-weight:bold;
-    color: var(--white-color);
+    color: var(--text-color);
     background-color: var(--primary-color);
     border: none;
     border-radius: 5rem;
 }
 
 .search-btn:hover{
-    color: var(--white-color);
+    color: var(--text-color);
     background-color: var(--button-hover-color);
     border: none;
 }

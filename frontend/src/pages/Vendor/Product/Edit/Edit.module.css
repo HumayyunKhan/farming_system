@@ -1,5 +1,5 @@
 .addproduct-title {
-    color: var(--white-color);
+    color: var(--text-color);
     font-weight: 400;
     text-align: center;
     padding: 15px;
@@ -41,7 +41,7 @@
 .product-quantity-div label,
 .product-description-div label{
     text-align: left;
-    color: var(--white-color);
+    color: var(--text-color);
     font-weight: 400;
     padding: 5px 0px 5px 60px;
     font-size: 1.2rem;
@@ -60,7 +60,7 @@
     font-weight: 500;
     outline: none;
     border: 0px solid var(--primary-color);
-    background-color: var(--white-color);
+    background-color: var(--text-color);
 }
 
 .product-description-div textarea{
@@ -72,7 +72,7 @@
     font-weight: 500;
     outline: none;
     border: 0px solid var(--primary-color);
-    background-color: var(--white-color);
+    background-color: var(--text-color);
 }
 
 .product-name-div input:focus,
@@ -81,21 +81,21 @@
 .product-product-name-div input:focus {
     outline: none;
     border: 2px solid var(--primary-color);
-    background-color: var(--white-color);
+    background-color: var(--text-color);
 }
 
 .product-selectimg-div input {
     margin: 0px 0px 0px 60px;
     height: 50px;
     font-size: 1.2rem;
-    color: var(--white-color);
+    color: var(--text-color);
     font-weight: 500;
     outline: none;
     cursor: pointer;
 }
 
 .product-selectimg-div input::-webkit-file-upload-button {
-    color: var(--white-color);
+    color: var(--text-color);
     background-color: var(--primary-color);
     border: none;
     padding: 10px;
@@ -111,7 +111,7 @@
     font-size: 1.2rem;
     background-color: var(--primary-color);
     border: none;
-    color: var(--white-color);
+    color: var(--text-color);
     padding: 10px 20px;
     text-align: center;
     text-decoration: none;
@@ -123,7 +123,7 @@
 
 .product-button:hover {
     background-color: var(--button-hover-color);
-    color: var(--white-color);
+    color: var(--text-color);
 }
 
 .product-img-div {

@@ -1,6 +1,6 @@
 .container-fluid{
     background-color:var(--card-color) ;
-    color: var(--white-color);
+    color: var(--text-color);
     margin:60px 0px ;
 }
 

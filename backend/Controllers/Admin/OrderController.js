@@ -45,10 +45,19 @@ const deleteorder = AsyncHandler(async (req, res) => {
 const addtocartByUser = AsyncHandler(async (req, res) => {
     const productid = req.params.productid;
     const { userId } = req
+    const {quantity}=req.body
     console.log("req", req.params)
 
     try {
-        const addtocart = await UserModel.findOneAndUpdate({ _id: userId }, { $addToSet: { cartItems: productid } });
+        const product=await ProductModel.findOne({_id:productid});
+        delete product.quantity;
+        console.log(product,"---------")
+        product["quantity"]=quantity
+        console.log(product,"---------")
+        if(!product){
+          return  res.status(400).json('Product not found');
+        }
+        const addtocart = await UserModel.findOneAndUpdate({ _id: userId }, { $addToSet: { cart: productid,cartItems:{...product} } });
         res.json({ success: true })
     } catch (error) {
         console.error(error);
@@ -78,7 +87,7 @@ const getCartItems = AsyncHandler(async (req, res) => {
     }
     console.log("req", userid)
     try {
-        const getCartItems = await UserModel.findOne({ _id: userid }).populate("cartItems");
+        const getCartItems = await UserModel.findOne({ _id: userid })
         res.json({ success: true, data: getCartItems })
     } catch (error) {
         console.error(error);
@@ -101,8 +110,8 @@ const removeFromCart = AsyncHandler(async (req, res) => {
         //     { new: true }
         // )
         const updatedUser = await UserModel.findOneAndUpdate(
-            { _id: userid },
-            { $pull: { cartItems: new mongoose.Types.ObjectId(productId) } },
+            { _id: userid }, 
+            { $pull: { cart: new mongoose.Types.ObjectId(productId),cartItems:{_id:new mongoose.Types.ObjectId(productId)} } },
             { new: true }
         );
         res.json({ success: true, data: getCartItems })
@@ -124,7 +133,7 @@ const getCartItemsSingle = AsyncHandler(async (req, res) => {
     try {
         let data = await UserModel.findOne(
             { _id: userid },
-            { cartItems: productId },
+            { cartItems: {_id:new mongoose.Types.ObjectId(productId)} },
         ).populate("cartItems")
         res.json({ success: true, data })
     } catch (error) {

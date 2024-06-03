@@ -26,7 +26,7 @@ ul {
 }
 
 .cta-text h4 {
-    color: var(--white-color);
+    color: var(--text-color);
     font-size: 20px;
     font-weight: 600;
     margin-bottom: 2px;
@@ -67,7 +67,7 @@ ul {
 }
 
 .footer-social-icon span {
-    color: var(--white-color);
+    color: var(--text-color);
     display: block;
     font-size: 20px;
     font-weight: 700;
@@ -76,7 +76,7 @@ ul {
 }
 
 .footer-social-icon a {
-    color: var(--white-color);
+    color: var(--text-color);
     font-size: 16px;
     margin-right: 15px;
 }
@@ -87,6 +87,7 @@ ul {
     text-align: center;
     line-height: 38px;
     border-radius: 50%;
+    color: var(--white-color);
 }
 
 .facebook-bg {
@@ -102,7 +103,7 @@ ul {
 }
 
 .footer-widget-heading h3 {
-    color: var(--white-color);
+    color: var(--text-color);
     font-size: 20px;
     font-weight: 600;
     margin-bottom: 40px;
@@ -145,9 +146,9 @@ ul {
 .subscribe-form input {
     width: 100%;
     padding: 14px 28px;
-    background: #2E2E2E;
+    background: #f3f3f3;
     border: 1px solid #2E2E2E;
-    color: var(--white-color);
+    color: var(--text-color);
 }
 
 .subscribe-form button {
@@ -157,6 +158,10 @@ ul {
     padding: 13px 20px;
     border: 1px solid var(--primary-color);
     top: 0;
+}
+
+.subscribe-form button:hover {
+    background: var(--button-hover-color);
 }
 
 .subscribe-form button i {

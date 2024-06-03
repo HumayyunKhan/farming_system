@@ -18,7 +18,7 @@
 }
 
 .discount-subtitle{
-    color: var(--black-color);
+    color: var(--white-color);
     font-size: 1.3rem;
     font-weight:700;
     padding-top: 10px;
@@ -28,7 +28,7 @@
 }
 
 .discount-para{
-    color: var(--black-color);
+    color: var(--white-color);
     font-size: 0.9rem;
     font-weight:400;
     padding-top: -10px;
@@ -46,8 +46,8 @@
 .discount-time{
     width: 54px;
     height: 50px;
-    background-color: #504a4a;
-    color: var(--white-color);
+    background-color: #f2f2f2;
+    color: var(--text-color);
     margin: 5px;
     text-align: center;
     font-size: 2rem;
@@ -64,15 +64,16 @@
 
 .discount-time-text{
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     flex-direction: row;
+    width: 100%;
 }
 
 .discount-time-unit{
-    padding: 0.4rem;
+    padding: 0;
     text-align: center;
-    color: var(--var(--black-color)-color);
-    font-size: 1.1rem;
+    color: var(--white-color);
+    font-size: 1rem;
     font-weight: 600;
 }

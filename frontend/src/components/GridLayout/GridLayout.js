@@ -14,7 +14,7 @@ const GridLayout = (props) => {
   return (
     <div className={CSS['grid']}>
       <div  className={CSS['logout-container']}>
-        <p style={{ color: 'white', fontWeight: 500, float: 'right' }} onClick={handleLogout}>Logout</p>
+        <p style={{ color: 'var(--text-color)', fontWeight: 500, float: 'right' }} onClick={handleLogout}>Logout</p>
       </div>
       <h1 className={CSS['Dashboard-title']}>Dashboard</h1>
       <div className={`${CSS['grid-container']} container-fluid`}>

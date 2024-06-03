@@ -1,10 +1,9 @@
 .category-title{
-    font-size: 1.6rem;
-    text-align: left;
+    font-size: 1.5rem;
+    text-align: center;
     color: var(--white-color);
-    font-weight: 500;
+    font-weight: 600;
     padding: 5px 25px;
-    border: 1px solid var(--white-color);
     background-color: var(--primary-color);
     border-radius: 8px;
 }
@@ -18,7 +17,7 @@
 
 .category-list-item{
     font-size: 1.1rem;
-    color: var(--white-color);
+    color: var(--text-color);
     line-height: 2rem;
     text-transform: capitalize;
 }
@@ -28,7 +27,7 @@
     appearance: none;
     -webkit-appearance: none;
     -moz-appearance: none;
-    border: 1px solid #fff;
+    border: 1px solid #272727;
     width: 15px;
     height: 15px;
     outline: none;
@@ -38,5 +37,5 @@
 
 .category-list-item-checkbox:checked{
     background-color:var(--primary-color);
-    color: var(--white-color);
+    color: var(--text-color);
 }

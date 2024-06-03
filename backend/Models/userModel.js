@@ -18,7 +18,8 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  cartItems:[{ type: mongoose.Schema.Types.ObjectId, ref: 'Products' }],
+  cart:[{ type: mongoose.Schema.Types.ObjectId, ref: 'Products' }],
+  cartItems:[],
   createdAt: {
     type: Date,
     default: Date.now,

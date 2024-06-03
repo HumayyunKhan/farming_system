@@ -1,5 +1,5 @@
 .addcategory-title {
-    color: var(--white-color);
+    color: var(--text-color);
     font-weight: 400;
     text-align: center;
     padding: 15px;
@@ -26,8 +26,14 @@
     white-space: nowrap;
 }
 
+.table td {
+    padding: 12px;
+    color: var(--text-color);
+}
+
 .table-head-row {
     background-color: var(--primary-color);
+    color: var(--white-color);
     height: 40px;
     padding: 10px 15px;
     font-size: 1.05rem;

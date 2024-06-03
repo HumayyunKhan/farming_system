@@ -5,10 +5,10 @@
 .category-title{
     font-size: 1.6rem;
     text-align: center;
-    color: var(--white-color);
+    color: var(--text-color);
     font-weight: 500;
     padding: 5px 25px;
-    border: 1px solid var(--white-color);
+    border: 1px solid var(--text-color);
     background-color: var(--primary-color);
 }
 
@@ -22,7 +22,7 @@
     border-radius: 1rem;
     text-align: left;
     margin: 0.6rem 0.6rem;
-    color: var(--white-color);
+    color: var(--text-color);
 }
 
 .card-container {
@@ -75,7 +75,7 @@
     font-size: 1.2rem;
     background-color: var(--primary-color);
     border: none;
-    color: var(--white-color);
+    color: var(--text-color);
     padding: 10px 20px;
     text-align: center;
     text-decoration: none;
@@ -87,7 +87,7 @@
 
 .button:hover{
     background-color: var(--button-hover-color);
-    color: var(--white-color);
+    color: var(--text-color);
   }
 
 

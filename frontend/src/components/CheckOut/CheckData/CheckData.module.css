@@ -1,11 +1,11 @@
 .container-fluid {
     background-color: var(--background-color);
-    color: var(--white-color);
+    color: var(--text-color);
 }
 
 .back-link {
     text-decoration: none;
-    color: var(--white-color);
+    color: var(--text-color);
     padding: 10px;
 }
 
@@ -45,18 +45,19 @@
     appearance: none;
     -webkit-appearance: none;
     -moz-appearance: none;
-    border: 1px solid #fff;
+    border: 1px solid var(--text-color);
     width: 15px;
     height: 15px;
     outline: none;
     cursor: pointer;
+    border-radius: 3px;
 }
 
 .checkbox1:checked,
 .checkbox2:checked,
 .checkbox3:checked {
     background-color: var(--primary-color);
-    color: var(--white-color);
+    color: var(--text-color);
 }
 
 .checkbox-details1 {
@@ -95,26 +96,25 @@
 }
 
 .payment-btn:hover {
-    color: var(--white-color);
+    color: var(--text-color);
     background-color: var(--button-hover-color);
     border: none;
 }
 
 .back-shop-btn {
     margin: 1.6rem 0rem 1rem 0.3rem;
-    width: 125px;
     height: 45px;
     font-size: 1.1rem;
     font-weight: 500;
-    color: var(--white-color);
-    background-color: var(--black-color);
+    padding: 6px 12px;
+    color: var(--text-color);
+    background-color: var(--card-color);
     border: none;
     border-radius: 0.5rem;
     transition: background-color 0.3s, color 0.3s;
 }
 
 .back-shop-btn:hover {
-    color: var(--white-color);
     background-color: rgba(0, 0, 0, 0.514);
     border: none;
 }

@@ -1,5 +1,5 @@
 .addproduct-title {
-    color: var(--white-color);
+    color: var(--text-color);
     font-weight: 400;
     text-align: center;
     padding: 15px;
@@ -48,7 +48,7 @@ form textarea {
 .product-quantity-div label,
 .product-description-div label {
     text-align: left;
-    color: var(--white-color);
+    color: var(--text-color);
     font-weight: 400;
     font-size: 1rem;
 }
@@ -86,15 +86,14 @@ form textarea {
 .product-old-name-div input:focus,
 .product-product-name-div input:focus {
     outline: none;
-    border: 2px solid var(--primary-color);
-    background-color: var(--white-color);
+    border: 1px solid var(--primary-color);
 }
 
 .product-selectimg-div input {
     margin: 30px auto;
     height: 50px;
     font-size: 1rem;
-    color: var(--white-color);
+    color: var(--text-color);
     font-weight: 500;
     outline: none;
     cursor: pointer;
@@ -129,7 +128,6 @@ form textarea {
 
 .product-button:hover {
     background-color: var(--button-hover-color);
-    color: var(--white-color);
 }
 
 .product-img-div {

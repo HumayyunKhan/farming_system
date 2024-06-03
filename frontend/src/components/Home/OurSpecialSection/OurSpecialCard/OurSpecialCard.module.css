@@ -42,7 +42,7 @@
     opacity: 0;
     transition: opacity 0.3s ease;
     text-align: center;
-    color: var(--white-color);
+    color: var(--text-color);
 }
 
 .card-img:hover .button-container {
@@ -67,7 +67,7 @@
     font-size: 1.2rem;
     background-color: var(--primary-color);
     border: none;
-    color: var(--white-color);
+    color: var(--text-color);
     padding: 10px 20px;
     text-align: center;
     text-decoration: none;
@@ -78,7 +78,7 @@
 }
 
 .button:hover{
-    color: var(--white-color);
+    color: var(--text-color);
     background-color: var(--button-hover-color);
     border: none;
 }

@@ -55,6 +55,7 @@ const EnterDetailsBuy = () => {
                 quantity,
                 price
             }, {}, { headers: { "Authorization": `Bearer ${userToken}` } });
+            
             toast.success("Your order has been successfully placed! Our team will communicate with you on WhatsApp. Thank you!");
             resetFormFields();
         } catch (err) {
@@ -159,14 +160,14 @@ const EnterDetailsBuy = () => {
                                         <p>Description: {item.description}</p>
                                         <p>Quantity: {item.quantity}</p>
                                         <h2>Price: {item.price}</h2>
-                                        {setPrice((prevPrice) => prevPrice + item.price)}
+                                        {setPrice(item.quantity* item.newPrice)}
                                     </div>
                                 ))}
                                 <p>Delivery charges should be applied and added in total amount. Rs.150</p>
                                 <h2>Total Price: {price}</h2>
 
                             </div>
-                        </div>
+                        </div> 
                     </div>
                     <ToastContainer />
                     <Footer />
