@@ -1,6 +1,7 @@
 const express = require("express");
 const userrouter = require("./Routers/userRouter");
 const vendorRouter = require("./Routers/vendorRouter");
+const adminRouter = require("./Routers/adminRouter");
 const {db}=require("./Database/DatabaseConnection")
 const path=require("path")
 
@@ -24,6 +25,7 @@ app.use(express.json());
 // Define routes
 app.use("/api", userrouter);
 app.use("/api/vendor", vendorRouter);
+app.use("/api/admin", adminRouter);
 app.use('/uploads', express.static(path.join(__dirname, './public/Images')));  
 
  

@@ -21,7 +21,7 @@ router.route("/deletecategory/:categoryId").delete(Auth,VendorAuth,deleteCategor
 //Product Routes
 router.route("/postproduct").post(Auth,VendorAuth,productUploadMiddleware,postproduct);
 router.route("/getproduct").get(getproduct);
-router.route("/deleteproduct/:productId").delete(Auth,VendorAuth,deleteproduct);
+router.route("/deleteproduct/:productId").delete(deleteproduct);
  
 //ContactUs Routes
 router.route("/postcontactus").post(Auth,postcontactus);
