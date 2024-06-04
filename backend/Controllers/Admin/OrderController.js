@@ -8,12 +8,12 @@ const postorder = AsyncHandler(async (req, res) => {
     const { firstname, lastname, email, number, city, country, address, productname, description, quantity, price } = req.body;
     try {
         console.log("req.body;", req.body.price)
-        // const existingOrder = await OrderModel.findOne({ email });
-        // if (existingOrder) {
-        //     return res.status(400).json({ error: "Email already exists" }); // Return a JSON object with an error message
-        // }
+        const productExist=await ProductModel.findOne({productName:productname})        // const existingOrder = await OrderModel.findOne({ email });
+        if (!productExist) {
+            return res.status(400).json({ error: "Product no longer exist" }); // Return a JSON object with an error message
+        }
         await OrderModel.create({
-            firstname, lastname, email, number, city, country, address, productname, description, quantity, price
+            firstname, lastname, email, number, city, country, address, productname, description, quantity, price,vendor:new mongoose.Types.ObjectId(productExist.vendor)
         });
         res.status(201).json("Successfully Added order");
     } catch (error) {
@@ -23,18 +23,19 @@ const postorder = AsyncHandler(async (req, res) => {
 });
 
 const getorder = AsyncHandler(async (req, res) => {
-    const orders = await OrderModel.find();
+    const {userId}=req;
+    const orders = await OrderModel.find({vendor:new mongoose.Types.ObjectId(userId)});
     res.status(200).json(orders);
-});
+}); 
 
 const deleteorder = AsyncHandler(async (req, res) => {
     const orderId = req.params.orderId;
     try {
-        const deletedorder = await OrderModel.findOneAndDelete(({ _id: orderId }));
+        const deletedorder = await OrderModel.findOneAndDelete(({ _id: orderId ,}));
         if (!deletedorder) {
-            return res.status(404).json('Product not found');
+            return res.status(404).json('order not found');
         }
-        res.status(200).json('Product deleted successfully');
+        res.status(200).json('order deleted successfully');
     } catch (error) {
         console.error(error);
         res.status(500).json('Internal server error');

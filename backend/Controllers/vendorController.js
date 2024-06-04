@@ -37,6 +37,8 @@ const Register = asynchandler(async (req, res) => {
 const Login = asynchandler(async (req, res) => {
   const { email, password } = req.body;
   const user = await Vendor.findOne({ email });
+
+  console.log('userssss', user)
   if (user && user.matchPassword(password)) {
     res.json({
       success: true,

@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 
 // const dbURI = "mongodb+srv://admin:test123@cluster0.krj9fey.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
+// const dbURI = 'mongodb+srv://admin:test123@cluster0.krj9fey.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0';
 const dbURI = 'mongodb+srv://admin:test123@cluster0.krj9fey.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0';
 // const dbURI = "mongodb+srv://admin:adminPassword@farming.kjjo4gd.mongodb.net/RR_Farming";
 // const dbURI = "mongodb://127.0.0.1:27017/farming";

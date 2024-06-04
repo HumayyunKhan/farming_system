@@ -1,11 +1,13 @@
 const express = require("express");
 const {checkToken:Auth}=require("../middlewares/authentication")
 const { Login, Register } = require("../Controllers/vendorController");
-const router = express.Router();
+const { BothAuth } = require("../utils/guards");
+const { getproductForVendor } = require("../Controllers/Admin/ProductController");
+const   router = express.Router();
 
 router.route("/login").post(Login);
 router.route("/register").post(Register);
-
+router.route("/getproduct").get(Auth,BothAuth,getproductForVendor);
 
 // //Category Routes
 // router.route("/postcategory").post(categoryUploadMiddleware,postCategory); 

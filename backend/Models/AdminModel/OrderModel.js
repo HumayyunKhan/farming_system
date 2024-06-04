@@ -11,7 +11,12 @@ const orderSchema = mongoose.Schema({
     productname: { type: String, required: true,unique:false },
     description: { type: String, required: true },
     quantity: { type: String, required: true },
-    price: { type: String, required: true }
+    price: { type: String, required: true },
+    vendor: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Vendor',
+        required: true,
+      },
 });
 
 const OrderModel = mongoose.model("Orders", orderSchema);

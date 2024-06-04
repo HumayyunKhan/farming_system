@@ -4,6 +4,7 @@ const vendorRouter = require("./Routers/vendorRouter");
 const adminRouter = require("./Routers/adminRouter");
 const {db}=require("./Database/DatabaseConnection")
 const path=require("path")
+require("dotenv").config({ path: ".env" });
 
 const app = express();
 const cors = require("cors");
